@@ -1,0 +1,2 @@
+forecasting-for-data-science/data/05_electricity/electricity_long.csv filter=lfs diff=lfs merge=lfs -text
+forecasting-for-data-science/data/07_traffic_pems/traffic_pems.csv filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,289 @@
+{
+  "documento": "Monografía Forecasting de Series Temporales",
+  "schema_version": "1.0",
+  "presentacion": {
+    "titulo": "Forecasting de Series Temporales en Ocho Dominios Industriales",
+    "extension_actual": "24 diapositivas",
+    "extension_propuesta": "22-24 (misma extensión, estructura redistribuida)",
+    "rol_segun_silabo": "Presentación a stakeholders (15%): defensa oral del modelo, supuestos, riesgos y retorno de negocio. Es además el único instrumento donde la política de IA del curso se evalúa directamente: el alumno debe 'entender y defender cada componente' frente a preguntas.",
+    "prioridad_intervencion": "alta",
+    "problema_central": "La presentación hereda la arquitectura de la monografía ANTERIOR (plantilla uniforme, voz impersonal, epigramas, tabla de métricas incomparables) y no la de la monografía REVISADA (autor visible, jerarquía de palancas, hilos longitudinales, honestidad como política). Defender la monografía nueva con el deck viejo crearía una discrepancia audible en la defensa.",
+    "angulo_narrativo_propuesto": "«Una sospecha, ocho experimentos, un método»: el deck abre con la sospecha del autor (¿basta un Seasonal Naive bien alineado?), recorre la evidencia, y cierra con lo que el autor haría mañana — no con 'gracias por su atención'."
+  },
+
+  "diagnostico_general": {
+    "fortalezas_a_conservar": [
+      "El formato de 2 slides por capítulo (resultado + método/lección) con la barra de metadatos (DOMINIO/DECISIÓN/HORIZONTE/BASELINE/RIESGO/MÉTRICA) es excelente — conservarlo intacto.",
+      "Los datos de autenticidad ya presentes y que hay que PROMOVER, no tocar: la discrepancia README (20.7%) vs notebook (18.36%) recalculada; el sesgo sistemático de la LSTM (+314/+299/+252 MW); la sensibilidad por permutación (bloque última hora ΔMAE 0.0373, bloques lejanos ≈ 0); la heterogeneidad 43,000× y los clusters (213/119/34/4); las 86,256 ventanas; el ajuste de 23.3 s de la LSTM; el ARIMA con grid de 18 órdenes. Cada uno de estos números solo puede tenerlo quien ejecutó los notebooks — son tu munición principal contra la sospecha de texto IA.",
+      "La nota de DeepAR en el slide 18: honestidad bien hecha, conservar y replicar como patrón.",
+      "Los números grandes destacados por slide (MASE 0.916, −44%, 29×, −43.2%) — buena jerarquía visual, conservar."
+    ],
+    "problemas_estructurales": [
+      "CERO autor en 24 slides: no hay 'sospecha', 'expectativa rota', 'lo que haría distinto'. El deck puede presentarlo cualquiera que lea la monografía — y la defensa oral es exactamente donde eso se detecta.",
+      "La tesis del slide 1 ('la complejidad paga solo cuando hay estructura que explotar') es la versión genérica; la monografía revisada tiene una más fina y cuantificada (jerarquía de palancas: 44% máximo por modelo vs 2900% por régimen de datos) que el deck no usa.",
+      "Slide 20 (sinopsis): métricas de datasets distintos en la misma columna (0.916, 0.681, 0.457, 0.234, +4%, −43.2%) — el pecado de incomparabilidad en su forma más visible. Un evaluador metodólogo lo notará en segundos.",
+      "Slide 21 (jerarquía): reproduce los Niveles 0-5 del sílabo con evidencia pegada — la monografía revisada reemplaza esto por la jerarquía de PALANCAS que la evidencia sostiene.",
+      "Las cajas 'CONCEPTO CLAVE' son epigramas (4 en 24 slides — dos de ellas calcos de la monografía vieja que ya marcamos: 'la misma pregunta con distinta información' era §1.1).",
+      "Las cajas 'DECISIÓN EJECUTIVA' son en su mayoría anti-patrones del sílabo parafraseados ('No elegir un modelo solo por AIC/BIC' es casi literal).",
+      "El cierre (slides 23-24) es débil: limitaciones genéricas, wishlist corta, y un epigrama final vacío ('la discusión abierta define la siguiente iteración'). Es la última impresión antes de preguntas."
+    ]
+  },
+
+  "patrones_globales": [
+    {
+      "id": "epigramas_en_caja",
+      "nombre": "CONCEPTO CLAVE como frase de póster",
+      "severidad": "alta",
+      "instancias": [
+        "Slide 1: «la complejidad paga solo cuando hay estructura que explotar»",
+        "Slide 2: «Univariado, multi-serie, multivariado y probabilístico son la misma pregunta con distinta información disponible» (calco de la monografía vieja §1.1)",
+        "Slide 21: «La jerarquía es sesgo-varianza: más parámetros reducen sesgo solo si hay señal real que capturar»",
+        "Slide 24: «La discusión abierta define la siguiente iteración: cada dominio tiene su propia pregunta de negocio»"
+      ],
+      "correccion": "Regla: máximo 1 epígrama en todo el deck, y debe estar GANADO por números que lo anteceden. Los otros tres se eliminan o se convierten en afirmación con cifras: el del slide 1 → la asimetría de palancas; el del slide 2 → eliminar; el del 21 → se sustituye por la jerarquía de palancas; el del 24 → eliminar."
+    },
+    {
+      "id": "plantilla_uniforme",
+      "nombre": "Ocho capítulos con estructura sintáctica idéntica",
+      "severidad": "media",
+      "instancias": ["Cada capítulo: slide de tabla + slide de bullets con 3 ítems de la misma forma + caja de decisión"],
+      "correccion": "Conservar la plantilla (es virtud en un deck) pero romper la SINTAXIS de los bullets: el hallazgo estrella de cada capítulo merece su frase con número y condición, los otros dos ítems pueden ser más cortos. Y añadir TRES slides de estructura distinta que rompen el ritmo: la sospecha (inicio), el campeón de cuatro actos (mitad), lo que haría mañana (final)."
+    },
+    {
+      "id": "ausencia_de_defensa_oral",
+      "nombre": "El deck no prepara el interrogatorio",
+      "severidad": "critica",
+      "instancias": ["El slide 24 invita preguntas pero el deck no contiene material de respuesta; los puntos débiles conocidos (atribución del 0.234, cohorte 48/24, incomparabilidad) no tienen slide de respaldo"],
+      "correccion": "Preparar 2-3 slides de RESPALDO (después del cierre, no proyectados salvo pregunta): (1) por qué el 0.234 de OPSD necesita ablation del pronóstico oficial; (2) qué significa la cohorte 48/24 para la generalización del 4%; (3) por qué las métricas entre capítulos no se cruzan. Quien tiene el slide de su propia debilidad preparado convierte la pregunta incómoda en demostración de criterio."
+    }
+  ],
+
+  "nueva_estructura_propuesta": {
+    "descripcion": "Mapa slide a slide de la versión revisada. Los cambios de estructura están marcados; todo lo demás conserva la plantilla existente con ajustes de contenido.",
+    "mapa": [
+      {"slide": 1, "cambio": "REESCRIBIR", "nuevo": "Título + la sospecha del autor (reemplaza la tesis genérica)"},
+      {"slide": 2, "cambio": "ajustar", "nuevo": "Agenda: corregir 'nueve capítulos' (son ocho técnicos + síntesis) y añadir el arco del campeón como anuncio"},
+      {"slide": 3, "cambio": "ajustar", "nuevo": "Cap. 1 intro: quitar el CONCEPTO CLAVE calco; añadir el 'método' en tres pasos con voz autoral"},
+      {"slide": 4, "cambio": "conservar", "nuevo": "Tabla de datasets (buena) — solo añadir la advertencia de incomparabilidad como leyenda"},
+      {"slides": "5-6", "cambio": "ajustar", "nuevo": "Cap. 2: conservar; la lección del random split se cuenta como episodio del autor"},
+      {"slides": "7-8", "cambio": "ajustar", "nuevo": "Cap. 3: conservar; añadir 'hice bien los deberes y saqué mala nota' como título emocional del slide 7"},
+      {"slides": "9-10", "cambio": "PROMOCIONAR", "nuevo": "Cap. 4: la discrepancia README/notebook sube a protagonista — es tu mejor evidencia de ejecución real"},
+      {"slides": "11-12", "cambio": "ajustar", "nuevo": "Cap. 5: la victoria se atribuye al feature store auditado, no a LightGBM"},
+      {"slides": "13-14", "cambio": "ajustar", "nuevo": "Cap. 6: declarar el estadístico (mediana vs macro) y el empate como hallazgo causal, no curiosidad"},
+      {"slides": "15-16", "cambio": "ajustar", "nuevo": "Cap. 7: el sesgo en MW es la estrella; el 0.234 lleva su asterisco visible"},
+      {"slides": "17-18", "cambio": "ajustar", "nuevo": "Cap. 8: el desempate por costo (N-BEATS vs TFT-like) se hace explícito; la cohorte 48/24 ya está — darle rango"},
+      {"slides": "19-20", "cambio": "ajustar", "nuevo": "Cap. 9: el doble win (calibración Y sharpness) como título del slide 19"},
+      {"slide": 21, "cambio": "REESCRIBIR", "nuevo": "Sinopsis: rediseñar la tabla alrededor de palancas, no de métricas en columna"},
+      {"slide": 22, "cambio": "SUSTITUIR", "nuevo": "Jerarquía de PALANCAS (protocolo/features/historia/covariable/arquitectura/calibración) reemplaza los Niveles 0-5 del sílabo"},
+      {"slide": 22b, "cambio": "AÑADIR", "nuevo": "El campeón de cuatro actos: LightGBM 0.457 → empate 0.01% → 0.234 → cuantílico (línea de tiempo visual)"},
+      {"slide": 23, "cambio": "ajustar", "nuevo": "Preguntas/respuestas: añadir el hilo 8-de-8 de no normalidad como cuarta respuesta implícita"},
+      {"slide": 23b, "cambio": "AÑADIR", "nuevo": "Lo que no ejecuté: tabla especificado/ejecutado (DeepAR, split 770/193, few-shot, ablation) — honestidad como política"},
+      {"slide": 24, "cambio": "REESCRIBIR", "nuevo": "Cierre: 'si me dieran un problema real mañana' — cuatro acciones en orden, sin epígrama"},
+      {"slides": "25-27", "cambio": "AÑADIR (respaldo)", "nuevo": "Slides de contingencia para el interrogatorio, no proyectados"}
+    ]
+  },
+
+  "diapositivas": [
+    {
+      "id": "slide_1_tesis",
+      "diagnostico": "La tesis actual ('la complejidad paga solo cuando hay estructura que explotar') es correcta pero genérica — la frase podría cerrar cualquier monografía de forecasting del mundo. La monografía revisada tiene una versión cuantificada y asimétrica que es más difícil y más memorable.",
+      "sugerencias": [
+        "Abrir con la sospecha personal (voz autoral desde el primer segundo de la defensa): la monografía nació de preguntarse si el Seasonal Naive bien alineado basta.",
+        "La tesis con números: la mayor mejora atribuible a un modelo fue 44% (cap. 5); la mayor mejora atribuible al régimen de datos fue 2900% (cap. 6). La palanca dominante no es el modelo."
+      ],
+      "ejemplo_reescritura": {
+        "antes": "La tesis: la complejidad paga solo cuando hay estructura que explotar.",
+        "despues": "Tesis: en ocho experimentos, la mejor decisión de MODELO compró hasta 44% de mejora; la mejor decisión de DATOS (tener historia) compró 2900%. Empecé sospechando que un Seasonal Naive bien alineado era difícil de superar — ocho experimentos después, la sospecha es un método."
+      }
+    },
+    {
+      "id": "slides_5_6_cap2",
+      "diagnostico": "Buen contenido. El slide 5 contiene un dato nuevo valioso no explotado: ETS con MASE 1.967 — peor que el seasonal naive y apenas mejor que el naive puro. El slide 6 reporta los tres tests de residuos juntos, lo que permite instalar el hilo de la cuenta regresiva.",
+      "sugerencias": [
+        "Slide 5: señalar que ETS (1.967) queda a mitad de camino entre SN168 (0.916) y Naive (7.770) — el suavizado exponencial sin estructura estacional explícita no sabe copiar la semana anterior. La tabla ya lo dice; una flecha o nota lo hace visible.",
+        "Slide 6: iniciar la cuenta regresiva de la no normalidad en voz alta: 'primera de ocho series donde Jarque-Bera rechaza normalidad — guarden el número, vuelve en el slide 20'. Esto convierte un bullet técnico en hilo narrativo del deck completo.",
+        "La DECISIÓN EJECUTIVA ('validar siempre con división temporal') es correcta — anclarla con el número propio: 'el random split prometía 251.66; la verdad era 287.55'."
+      ]
+    },
+    {
+      "id": "slides_7_8_cap3",
+      "diagnostico": "Contenido sólido con dos joyas subexplotadas: el grid de 18 órdenes y la estructura residual en lags ≥ 20. La historia dramática ('protocolo correcto, derrota') está en el título del slide 7 pero sin voz.",
+      "sugerencias": [
+        "Slide 7: titular la derrota con la voz del autor — 'Hice bien los deberes y saqué mala nota' es más memorable y defendible que 'ARIMA sigue el protocolo correcto y aun así pierde'. En la defensa oral, esta frase invita la pregunta correcta (¿por qué perdió?) que usted quiere responder.",
+        "Slide 8: el detalle de los cinco AIC indistinguibles (si está en la monografía) cabe aquí en una línea: 'el AIC ordenó 18 candidatos; los 5 mejores eran intercambiables en validación (~302 MAE) — el criterio no discrimina'.",
+        "El dato 'error 3× mayor en picos (572 vs 163)' merece su media frase de ironía operativa: peor justo donde se dimensiona la capacidad."
+      ]
+    },
+    {
+      "id": "slides_9_10_cap4",
+      "diagnostico": "Contiene la mejor línea de autenticidad de todo el deck, actualmente en un bullet de tercer nivel: 'El README cita 20.7%; recalculado del notebook: 18.36%'. Esa discrepancia — detectada, verificada y reportada — es la prueba más contundente de ejecución real en 24 slides. Está enterrada.",
+      "sugerencias": [
+        "PROMOCIONAR la discrepancia README/notebook: subirla a bullet primero o a una línea destacada del slide 10. Formulación: 'el README del dataset decía 20.7%; al recalcular del notebook obtuve 18.36% — esta presentación reporta el número verificado'. Es exactamente el tipo de detalle que un texto IA no puede inventar (no sabe que el README miente) y que un evaluador reconoce al instante.",
+        "El título del slide 9 ya dice 'bajo un escenario oracle' — bien. Añadir la traducción de una línea: '18.36% es un techo, no un pronóstico de mejora: se midió con el clima que ya ocurrió'.",
+        "La inestabilidad entre folds (desv. 14.13 vs 10.58) ya está en la tabla: señalarla con una palabra ('SARIMAX gana más pero tambalea más') — la estabilidad es criterio de producción, no adorno."
+      ]
+    },
+    {
+      "id": "slides_11_12_cap5",
+      "diagnostico": "El título 'La primera ganancia grande y consistente del curso' atribuye la victoria al ML. El slide 12 tiene el contenido correcto (exclusión de la fuga, embargo, escalador) pero la atribución de la monografía revisada (la victoria es del protocolo) no aparece.",
+      "sugerencias": [
+        "Reatribuir en el título o subtítulo: '−44% con el mismo feature store auditado para todos: la victoria es del protocolo; LightGBM la cobra'. La distinción se defiende oralmente en una frase: 'el mismo LightGBM con casual+registered como features habría "ganado" más — con números falsos'.",
+        "El dato de 37 features finales es bueno — añadir cuál fue la más importante (si la monografía la reporta) humaniza el feature engineering: '37 features; la más importante resultó ser X'.",
+        "Slide 12: mantener los tres bullets; el primero (cnt = casual + registered) puede ganar una palabra de mecánica: 'reconstrucción EXACTA del target — no correlación: descomposición'."
+      ]
+    },
+    {
+      "id": "slides_13_14_cap6",
+      "diagnostico": "El slide 13 mezcla dos estadísticos sin declararlo: 'MASE mediano: warm 1.34 vs cold 38.59' (medianas) y la tabla con 'MASE macro 69.44' (media). El 29× usa medianas; el 69.44 es macro. Un evaluador puntilloso preguntará por qué 38.59 ≠ 69.44 — y esa pregunta tiene respuesta, pero el deck no la da.",
+      "sugerencias": [
+        "Declarar los estadísticos: '29× en MASE mediano; 69.44 en MASE macro (la media es castigada por los clientes-peor: la cola es la historia real)'. Esta línea convierte una aparente inconsistencia en demostración de criterio sobre sesgo de distribuciones de error.",
+        "El título del slide 13 ya es bueno. Añadir el contraste causal del empate: 'LightGBM y perfil empatan porque reciben la misma información (solo calendario) — la arquitectura no crea información'.",
+        "Slide 14: los clusters (213/119/34/4) están — una palabra sobre su interpretación de negocio (si existe: industrial/comercial/residencial) los convierte de código en análisis.",
+        "La DECISIÓN EJECUTIVA (política escalonada 0/1/4+ semanas) es calco del sílabo: añadir la honestidad de la monografía revisada — 'los umbrales de 1 y 4 semanas son convención; la curva real MASE-vs-historia no se ejecutó'."
+      ]
+    },
+    {
+      "id": "slides_15_16_cap7",
+      "diagnostico": "El mejor par de slides del deck: tabla clara, y el slide 15 contiene el sesgo sistemático de la LSTM (+314/+299/+252 MW) — un hallazgo de autopsia que casi ningún curso reporta. El slide 16 dice 'argumento completo' y casi lo es. Le falta el asterisco del 0.234.",
+      "sugerencias": [
+        "El sesgo en MW merece protagonista: 'la LSTM no solo pierde: pierde SIEMPRE hacia abajo (+252 a +314 MW de sub-pronóstico)'. Un sesgo sistemático es diagnóstico (la red recorta los picos), no solo error. En la defensa oral, esto demuestra que usted leyó sus residuos.",
+        "El asterisco del campeón: una línea bajo la tabla del slide 15 — '0.234 incluye el pronóstico oficial de carga como feature: atribución pendiente de ablation'. Sin esta línea, el mejor número del deck está sobre-vendido; con ella, está auditado.",
+        "El ARIMA 3.263 de la tabla merece su media línea en el slide 16 (autopsia): 'un (2,1,2) sin términos estacionales sobre serie con estacionalidad semanal dominante: no perdió, fue mal especificado'.",
+        "El ajuste de 23.3 s de la LSTM ya está — perfecto contraste con el argumento de costo."
+      ]
+    },
+    {
+      "id": "slides_17_18_cap8",
+      "diagnostico": "Buen par. La tabla del slide 17 ya contiene el desempate por tiempo (TFT-like 398.45 s vs N-BEATS 95.41 s) pero el título corona al TFT-like. La cohorte 48/24 está en el slide 18 con la cifra correcta de ventanas. La sensibilidad por permutación (ΔMAE 0.0373) es oro subexplotado.",
+      "sugerencias": [
+        "El título del slide 17 dice 'TFT-like gana por apenas 4%' — el deck revisado añade el desempate real: 'en MAE gana TFT-like; en costo/beneficio gana N-BEATS (mismo resultado, cuarta parte del tiempo)'. La tabla ya tiene los números; el título debe leerlos.",
+        "La sensibilidad por permutación (slide 18) traducida: 'el modelo solo mira la última hora — los bloques lejanos aportan ≈ 0' — esto explica POR QUÉ la ganancia es marginal (poca señal transferible de largo alcance) y muestra que usted preguntó al modelo, no solo lo midió.",
+        "La cohorte 48/24 vs diseño 770/193: ya visible — añadir la consecuencia en una cláusula: 'veredicto sobre 24 sensores de test: direccional, no definitivo'."
+      ]
+    },
+    {
+      "id": "slides_19_20_cap9",
+      "diagnostico": "El contenido estrella del deck. El título del slide 19 ('la ganancia más clara') es el de mayor riesgo de calco del sílabo. El slide 20 contiene el doble win en tabla pero no articulado. La nota de DeepAR es ejemplar.",
+      "sugerencias": [
+        "Slide 19: reemplazar el título-calco por el hallazgo estructural: 'Doble victoria: calibrada (78.9% vs 80% nominal) Y más angosta (−28% de ancho)' — el doble win es más interesante que 'la ganancia más clara' y no está en el sílabo: es lectura propia.",
+        "Slide 20: una línea bajo la tabla con la explicación causal: 'el empírico hereda la dispersión histórica de cada serie corta; el cuantílico condiciona la incertidumbre a features — modela la varianza en vez de padecerla'. Es el cobro del ARCH LM y la respuesta a la pregunta 3 en una frase.",
+        "El hilo 8-de-8 puede cobrarse aquí si no se hizo en el slide 6: 'Jarque-Bera rechazó normalidad en los ocho capítulos — este resultado existe porque eso se midió'.",
+        "La nota de DeepAR: conservar exactamente como está — es el estándar de honestidad del documento y el evaluador la valorará."
+      ]
+    },
+    {
+      "id": "slide_21_sinopsis",
+      "diagnostico": "El pecado de incomparabilidad en su forma más visible: MASE 0.916 (tráfico), 0.681 (energía residencial), 0.457 (bicicletas), 0.234 (carga nacional), +4% (sensores), −43.2% (M3) — seis escalas y protocolos distintos alineados en una columna. La tabla invita al lector a comparar 0.234 con 0.457, que es exactamente lo que el documento prohíbe.",
+      "sugerencias": [
+        "Rediseñar la tabla: sustituir la columna 'Métrica' por dos columnas — 'Número-tótem (con su métrica y su asterisco)' y 'La palanca que lo explicó'. Fila ejemplo: Cap. 6 | '0.01% de diferencia' | 'historia disponible' | Sin historia no hay escala. La última columna convierte la tabla de ranking imposible en síntesis de palancas.",
+        "Añadir una leyenda de una línea bajo la tabla: 'las métricas no son comparables entre capítulos (datasets, protocolos y estadísticos distintos) — compárense las palancas, no los números'. Esa leyenda, en el deck, es una de las señales más fuertes de criterio metodológico disponible.",
+        "La fila del cap. 6 dice 'MASE 69.44' — con el rediseño, el número-tótem correcto es '0.01%' (el empate) o '29×' (la brecha), no el macro."
+      ]
+    },
+    {
+      "id": "slide_22_jerarquia",
+      "diagnostico": "La tabla reproduce los Niveles 0-5 del sílabo (con 'Evidencia del curso' añadida). Es calco estructural de la fuente más disponible — el evaluador conoce esa tabla de memoria. La monografía revisada la sustituye por la jerarquía de palancas.",
+      "sugerencias": [
+        "SUSTITUIR por la jerarquía de palancas, que es el aporte real del documento: Protocolo (cap. 2: 251.66 vs 287.55 — validar bien) → Features (cap. 5: −44%) → Historia (cap. 6: 29×) → Covariables (cap. 4: 18.36% condicionado) → Arquitectura (caps. 7-8: 0% a 4%) → Calibración (cap. 9: −43.2% CRPS). Seis filas, cada una con su cifra. La lectura vertical de esa tabla ES la tesis del documento.",
+        "Si se desea conservar la tabla de niveles del sílabo, etiquetarla como 'criterio del curso' y poner la de palancas al lado como 'lo que la evidencia sostiene' — el contraste entre ambas es el aporte. Nunca presentar solo la del sílabo.",
+        "El CONCEPTO CLAVE ('sesgo-varianza') se elimina o se gana: 'más parámetros reducen sesgo solo si hay señal — en 4 de 8 capítulos no la había'."
+      ],
+      "ejemplo_reescritura": {
+        "antes": "Nivel 0-5 (tabla del sílabo con evidencia pegada) + CONCEPTO CLAVE sesgo-varianza",
+        "despues": "Título: 'Lo que movió la aguja, en orden de magnitud' | Tabla: Palanca | Capítulo | Evidencia | Protocolo | 2 | random split prometía 12% menos error — mentía | Features | 5 | −44% con el mismo modelo, mejor descripción del pasado | Historia | 6 | 29× — tener historia vale más que cualquier modelo | Covariables | 4 | 18.36%, solo si estarán disponibles a futuro | Arquitectura | 7-8 | entre 0% y 4% — nunca explicó un resultado sola | Calibración | 9 | −43.2% de CRPS — la incertidumbre también se modela"
+      }
+    },
+    {
+      "id": "slide_22b_campeon_NUEVO",
+      "diagnostico": "Slide inexistente. El arco del campeón LightGBM (cuatro actos) es el mejor material narrativo de la monografía revisada y no tiene representación en el deck — el slide 21 lo muestra como dos filas sueltas ('LightGBM 0.457', 'LightGBM 0.234') sin conexión.",
+      "sugerencias": [
+        "AÑADIR: una línea de tiempo horizontal con cuatro hitos: Cap. 5 'victoria' (0.457, features ricas) → Cap. 6 'humillación' (empate 0.01%, sin información) → Cap. 7 'redención con asterisco' (0.234, atribución pendiente) → Cap. 9 'coronación' (−43.2%, cuantílica). Una línea de conclusión: 'el mismo algoritmo, cuatro encarnaciones — la versatilidad del tabular bien alimentado es el hallazgo tecnológico más sólido del curso'.",
+        "Este slide además PREPARA la defensa: '¿por qué siempre LightGBM?' es la pregunta más probable del jurado, y este slide la contesta antes de que la hagan — con estructura, no con defensión."
+      ]
+    },
+    {
+      "id": "slide_23_preguntas",
+      "diagnostico": "Las tres respuestas son correctas y mejor de lo esperado (la primera ya incluye la condición '4 de 8'). Faltan dos cosas: la respuesta 3 puede cerrar el hilo de la cuenta regresiva, y la DECISIÓN EJECUTIVA del slide es la síntesis operativa — pero formula 'LightGBM como caballo de batalla' sin el matiz de la monografía revisada.",
+      "sugerencias": [
+        "Respuesta 3, cerrar el arco: 'Jarque-Bera: 8 de 8 capítulos → la no normalidad no es anomalía, es el régimen — por eso la salida estándar es probabilística, no un intervalo gaussiano'.",
+        "La DECISIÓN EJECUTIVA: añadir la condición del caballo de batalla — 'LightGBM como caballo de batalla CUANDO hay features que explotar; sin ellas, empata con un promedio (cap. 6)'. El matiz no debilita: muestra que la recomendación tiene condiciones verificadas.",
+        "El '4 de 8' merece su medio segundo de precisión oral: en dos de esos cuatro (caps. 2 y 3) el simple GANA; en los otros dos (7 y 8) el sofisticado gana por margen que no paga costo. 'Iguala o apenas supera' es correcto; la descomposición oral demuestra dominio."
+      ]
+    },
+    {
+      "id": "slide_23b_no_ejecutado_NUEVO",
+      "diagnostico": "Slide inexistente. La monografía revisada instala la honestidad especificado/ejecutado como política; el deck la tiene dispersa (nota de DeepAR en el slide 18, mención de split PeMS en el cierre).",
+      "sugerencias": [
+        "AÑADIR: tabla compacta de dos columnas — 'Especificado' vs 'Ejecutado': DeepAR (no ejecutado), split 770/193 de PeMS (ejecutado 48/24), few-shot 1 semana (propuesto, no medido), ablation del pronóstico oficial de OPSD (deuda), GRU (contenido del curso, no entrenada). Cinco filas, título: 'Lo que este documento NO ejecuta — y lo dice'.",
+        "Cierre del slide: 'ningún número de esta presentación proviene de una especificación sin ejecutar'. Es la frase más defendible del deck completo — convierte la debilidad en estándar."
+      ]
+    },
+    {
+      "id": "slides_24_cierre",
+      "diagnostico": "El cierre actual: limitaciones genéricas ('cómputo solo CPU'), trabajo futuro de tres ítems, epigrama vacío final ('la discusión abierta define la siguiente iteración'), y 'gracias'. Es la impresión final antes del interrogatorio — y es la parte más débil del deck.",
+      "sugerencias": [
+        "REESCRIBIR con la estructura de cierre de la monografía revisada: cuatro acciones en orden ('si me dieran un problema real mañana: 1. preguntar por la decisión y elegir la métrica ahí; 2. construir y alinear el baseline estacional antes de tocar modelos; 3. auditar cada covariable por disponibilidad futura; 4. entregar cuantiles con cobertura verificada') y la línea final: 'lo que NO haría: empezar por la arquitectura'.",
+        "El trabajo futuro puede ganar priorización en una línea: 'si pudiera ejecutar un experimento más: el ablation del pronóstico oficial de OPSD — condiciona la credibilidad del mejor resultado'. Deuda elegida > wishlist.",
+        "La nota de reproducibilidad (semilla 42, notebooks ejecutados) se conserva — es buen cierre de respaldo.",
+        "ELIMINAR el epigrama final. La última palabra proyectada debe ser un número o una acción, nunca 'cada dominio tiene su propia pregunta de negocio'."
+      ]
+    }
+  ],
+
+  "banco_de_preguntas_probables": {
+    "descripcion": "Las cinco preguntas más probables del jurado, con la respuesta de una línea que el deck ya contiene o debería contener. Prepararlas es la inversión de mayor retorno por minuto para la defensa oral.",
+    "preguntas": [
+      {
+        "q": "¿Por qué ganó LightGBM en OPSD con 0.234 — es tan bueno ese resultado?",
+        "a": "Es el mejor número del documento CON asterisco: incluye el pronóstico oficial de carga como feature (covariable legítima, disponible ex-ante — a diferencia del clima oracle del cap. 4). La atribución exacta (cuánto es el modelo, cuánto la covariable) requiere el ablation que quedó como deuda."
+      },
+      {
+        "q": "¿Por qué 38.59 y 69.44 de MASE en el capítulo 6 — cuál es el número correcto?",
+        "a": "Son estadísticos distintos del mismo fenómeno: 38.59 es la MEDIANA del MASE warm-vs-cold (robusta a colas); 69.44 es el MACRO (media, castigada por los clientes peor servidos). La cola derecha es la historia real del cold-start — por eso reporto ambos."
+      },
+      {
+        "q": "¿Puedo comparar el 0.234 del capítulo 7 con el 0.457 del capítulo 5?",
+        "a": "No: datasets, protocolos y estadísticos distintos. Lo comparable entre capítulos es la PALANCA que explicó cada resultado (protocolo, features, historia, covariable, arquitectura) — esa es la columna de la tabla de síntesis."
+      },
+      {
+        "q": "¿El 4% de PeMS-SF generaliza a los 963 sensores?",
+        "a": "Es direccional, no definitivo: la cohorte ejecutada fue 48/24 sobre un diseño de 770/193. La señal (4% medido sobre 40,176 ventanas) es real; su magnitud a escala completa requiere ejecutar el split íntegro — trabajo futuro priorizado."
+      },
+      {
+        "q": "¿Por qué no ejecutaron DeepAR si era parte del diseño?",
+        "a": "Decisión de alcance (presupuesto de cómputo CPU), documentada como política: el documento distingue sistemáticamente lo ejecutado de lo especificado. Reportar DeepAR sin ejecutarlo habría sido inventar una métrica."
+      }
+    ]
+  },
+
+  "checklist_verificacion_presentacion": [
+    "¿El deck abre con la sospecha del autor y cierra con sus cuatro acciones (no con 'gracias' + epígrama)?",
+    "¿La tesis del slide 1 es la asimetría de palancas (44% vs 2900%) y no la versión genérica?",
+    "¿La discrepancia README 20.7% vs notebook 18.36% está promovida a bullet primero?",
+    "¿La tabla de sinopsis (slide 21) compara palancas y no métricas, con leyenda de incomparabilidad?",
+    "¿La jerarquía del slide 22 es la de palancas (o el contraste sílabo/evidencia) y no los Niveles 0-5 solos?",
+    "¿Existe el slide del campeón de cuatro actos?",
+    "¿Existe el slide 'lo que no ejecuto' con la tabla especificado/ejecutado?",
+    "¿Queda máximo 1 CONCEPTO CLAVE, ganado por números?",
+    "¿Las DECISIONES EJECUTIVAS citan números propios y no anti-patrones del sílabo parafraseados?",
+    "¿Los estadísticos del cap. 6 (mediana vs macro) están declarados?",
+    "¿El 0.234 lleva su asterisco de atribución visible en el slide?",
+    "¿El doble win del cap. 9 (calibración Y ancho) está en el título del slide?",
+    "¿El sesgo sistemático de la LSTM (+314 MW) tiene protagonista oral?",
+    "¿El ARIMA 3.263 tiene su media línea de autopsia (mala especificación, no derrota digna)?",
+    "¿Hay 2-3 slides de respaldo preparados para las preguntas incómodas?",
+    "¿Se corrigió 'nueve capítulos siguientes' del slide 2?",
+    "¿La última palabra proyectada es un número o una acción?",
+    "¿Prueba final: podría presentar este deck alguien que solo leyó la monografía? (Si sí, falta el autor; si no, está listo)"
+  ],
+
+  "notas_de_uso": {
+    "prioridad_si_el_tiempo_es_corto": [
+      "1. Slides 1, 21, 22 y 24 (tesis, sinopsis, jerarquía, cierre) — son donde el deck traiciona a la monografía revisada.",
+      "2. Los dos slides nuevos (campeón de cuatro actos; lo que no ejecuto) — 20 minutos de trabajo, máximo retorno en la defensa.",
+      "3. Promover la discrepancia README/notebook a protagonista — una línea, efecto desproporcionado."
+    ],
+    "coherencia_con_la_monografia": "Cada cambio propuesto aquí implementa un hilo de la tabla de costura de la revisión del Capítulo 10: tesis por palancas (hilo 8), campeón (hilo 6), no normalidad 8/8 (hilo 3), honestidad especificado/ejecutado (hilo 12), incomparabilidad (advertencia transversal). Si la monografía se reescribe según lo planeado, este deck es su versión fiel; si el deck se corrige primero, además fija la voz que la reescritura debe seguir.",
+    "advertencia_de_integridad": "Igual que con la monografía: los títulos y frases propuestos son demos de registro. Las verbalizaciones orales ('hice bien los deberes y saqué mala nota') deben corresponder a su proceso real — la defensa oral es exactamente donde una frase prestada se delata, porque el jurado pregunta el detalle detrás de la frase."
+  }
+}
